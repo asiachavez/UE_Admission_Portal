@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission Form Validation</title>
+  <script>
+    function validateForm(event) {
+      // Prevent form submission
+      event.preventDefault();
+
+      // Get form inputs
+      const lastName = document.getElementById('lastName').value.trim();
+      const firstName = document.getElementById('firstName').value.trim();
+      const dateOfBirth = document.getElementById('dob').value;
+      const citizenship = document.getElementById('citizenship').value;
+      const gender = document.getElementById('gender').value;
+      const civilStatus = document.getElementById('civilStatus').value;
+      const religion = document.getElementById('religion').value;
+      const semester = document.getElementById('semester').value;
+      const admissionAs = document.getElementById('admissionAs').value;
+      const strand = document.getElementById('strand').value;
+      const degreeProgram = document.getElementById('degreeProgram').value;
+      const campus = document.getElementById('campus').value;
+      const photo = document.getElementById('photo').files[0];
+      const documents = document.getElementById('documents').files;
+
+      // Validation messages
+      let errors = [];
+
+      if (!lastName) errors.push("Last name is required.");
+      if (!firstName) errors.push("First name is required.");
+      if (!dateOfBirth) errors.push("Date of birth is required.");
+      if (!citizenship) errors.push("Citizenship must be selected.");
+      if (!gender) errors.push("Gender must be selected.");
+      if (!civilStatus) errors.push("Civil status must be selected.");
+      if (!religion) errors.push("Religion must be selected.");
+      if (!semester) errors.push("Semester must be selected.");
+      if (!admissionAs) errors.push("Seeking admission as must be selected.");
+      if (!strand) errors.push("Senior high school strand is required.");
+      if (!degreeProgram) errors.push("Course/Degree Program is required.");
+      if (!campus) errors.push("Campus must be selected.");
+      if (!photo) errors.push("A photo is required.");
+      if (documents.length < 1) errors.push("At least one document must be uploaded.");
+
+      // Show errors or submit form
+      if (errors.length > 0) {
+        alert(errors.join("\n"));
+      } else {
+        alert("Form submitted successfully!");
+        // Uncomment below to submit form if using server-side validation
+        // document.getElementById('admissionForm').submit();
+      }
+    }
+  </script>
+</head>
+<body>
+  <form id="admissionForm" onsubmit="validateForm(event)">
+    <label for="lastName">Surname (Last Name)*</label>
+    <input type="text" id="lastName" name="lastName">
+    <br>
+
+    <label for="firstName">Given Name (First Name)*</label>
+    <input type="text" id="firstName" name="firstName">
+    <br>
+
+    <label for="dob">Date of Birth*</label>
+    <input type="date" id="dob" name="dob">
+    <br>
+
+    <label for="citizenship">Citizenship*</label>
+    <select id="citizenship" name="citizenship">
+      <option value="">-- Select --</option>
+      <option value="Filipino">Filipino</option>
+      <option value="Other">Other</option>
+    </select>
+    <br>
+
+    <label for="gender">Sex/Gender*</label>
+    <select id="gender" name="gender">
+      <option value="">-- Select --</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    <br>
+
+    <label for="civilStatus">Civil Status*</label>
+    <select id="civilStatus" name="civilStatus">
+      <option value="">-- Select --</option>
+      <option value="Single">Single</option>
+      <option value="Married">Married</option>
+    </select>
+    <br>
+
+    <label for="religion">Religion*</label>
+    <select id="religion" name="religion">
+      <option value="">-- Select --</option>
+      <option value="Roman Catholic">Roman Catholic</option>
+      <option value="Other">Other</option>
+    </select>
+    <br>
+
+    <label for="semester">Semester*</label>
+    <select id="semester" name="semester">
+      <option value="">-- Select --</option>
+      <option value="First Semester">First Semester</option>
+      <option value="Second Semester">Second Semester</option>
+    </select>
+    <br>
+
+    <label for="admissionAs">Seeking Admission As*</label>
+    <select id="admissionAs" name="admissionAs">
+      <option value="">-- Select --</option>
+      <option value="Freshman">Freshman</option>
+    </select>
+    <br>
+
+    <label for="strand">Senior High School Strand*</label>
+    <input type="text" id="strand" name="strand">
+    <br>
+
+    <label for="degreeProgram">Course/Degree Program*</label>
+    <input type="text" id="degreeProgram" name="degreeProgram">
+    <br>
+
+    <label for="campus">Campus*</label>
+    <select id="campus" name="campus">
+      <option value="">-- Select --</option>
+      <option value="Manila">Manila</option>
+      <option value="Caloocan">Caloocan</option>
+    </select>
+    <br>
+
+    <label for="photo">Upload Latest Photo*</label>
+    <input type="file" id="photo" name="photo" accept="image/*">
+    <br>
+
+    <label for="documents">Upload Required Documents*</label>
+    <input type="file" id="documents" name="documents" multiple>
+    <br>
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
